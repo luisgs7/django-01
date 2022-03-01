@@ -9,6 +9,12 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import os
+import dotenv
+
+dotenv.load_dotenv(dotenv.find_dotenv())
+
+key = os.getenv("SECRET_KEY") 
 
 from pathlib import Path
 
@@ -20,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-b+w-v1ht5=g=27py!(zlg6f875^=+%xd@xaeuu#d!-hw#x+*h_'
+SECRET_KEY = f'{key}'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'blog',
+    'produto',
+    'sobre',
 ]
 
 MIDDLEWARE = [
